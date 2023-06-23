@@ -49,7 +49,7 @@ export default function Home() {
       <div className="max-w-4xl mx-auto" >
         
           {blogPosts.map((blogPost) => (
-            <div key={blogPost.id} className="mb-8" style={{ width: '1200px' }} >
+            <div key={blogPost.slug} className="mb-8" style={{ width: '1200px' }} >
               <img style={{width:'960px', height:'440px'}}
                 src={blogPost.images}
                 alt="Blog Post Image"

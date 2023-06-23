@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import dynamic from "next/dynamic";
 
 const About = () => {
     return (
@@ -32,4 +33,4 @@ const About = () => {
     )
 }
 
-export default About
+export default dynamic(() => Promise.resolve(About), { ssr: false });

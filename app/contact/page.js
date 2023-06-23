@@ -1,20 +1,24 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
+import { isMobile } from 'react-device-detect';
+import dynamic from "next/dynamic";
 
 const contact = () => {
+  const shouldShowMobileView = isMobile;
+
   return (
     <>
       <Navbar />
-      <div className="bg-gray-100 py-12" style={{ backgroundColor: 'lightblue' }}>
+      <div className={`bg-gray-100 py-12 ${shouldShowMobileView ? 'px-4' : 'px-0'}`} style={{ backgroundColor: 'lightblue' }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-blue-800 shadow-lg rounded-lg overflow-hidden">
-            <div className="px-6 py-8 sm:p-10">
+            <div className={`px-6 py-8 ${shouldShowMobileView ? 'sm:p-10' : 'sm:px-10 sm:py-8'}`}>
               <h1 className="text-2xl font-semibold text-white mb-6">Contact Me</h1>
 
-              <div className="mt-8">
+              <div className={`mt-8 ${shouldShowMobileView ? 'text-center' : ''}`}>
                 <h1 className="text-lg font-medium text-white mb-4">Connect With Me On</h1>
-                <ul className="flex space-x-4">
+                <ul className={`flex flex-wrap ${shouldShowMobileView ? 'justify-center' : 'justify-start'} space-x-4`}>
                   <li>
                     <Link href="mailto:example@gmail.com" className="text-indigo-500 hover:text-white transition-colors duration-300">
                       <img src='https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-64.png' alt="Gmail Logo" style={{ width: '64px', height: '64px' }} />
@@ -74,4 +78,4 @@ const contact = () => {
   );
 };
 
-export default contact;
+export default dynamic(() => Promise.resolve(contact), { ssr: false });
